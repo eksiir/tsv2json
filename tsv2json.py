@@ -19,7 +19,7 @@ def convert_tsv_to_json(input_file, output_file):
     reader = csv.DictReader(f, delimiter='\t')
     for row in reader:
       row['_deleted'] = False
-      row['threat_level'] = 2
+      row['keywords'] = row['keywords'].replace(',', ' ').split()
       row['createdAt'] = '2024-09-17T04:10:13.428+00:00'
       row['updatedAt'] = '2024-09-17T04:10:13.428+00:00'
       row['updatedBy'] = '5f4e994f025923001fdd6bc8'
