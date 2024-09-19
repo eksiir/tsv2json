@@ -14,19 +14,19 @@ def convert_tsv_to_json(input_file, output_file):
     output_file: Path to the output JSON file.
   """
   data = []
-  fieldnames = None
 
   with open(input_file, 'r') as f:
     reader = csv.DictReader(f, delimiter='\t')
     for row in reader:
-      if not fieldnames:
-        fieldnames = row.keys()
-      # Convert keywords to a list and assign to the row
-      row['keywords'] = json.loads(row['keywords'])
+      row['_deleted'] = False
+      row['threat_level'] = 2
+      row['createdAt'] = '2024-09-17T04:10:13.428+00:00'
+      row['updatedAt'] = '2024-09-17T04:10:13.428+00:00'
+      row['updatedBy'] = '5f4e994f025923001fdd6bc8'
       data.append(row)
 
   with open(output_file, 'w') as f:
-    json.dump(data, f, indent=4)
+    json.dump(data, f, indent=2)
 
 
 if __name__ == '__main__':
